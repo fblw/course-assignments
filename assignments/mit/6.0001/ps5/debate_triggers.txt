@@ -1,0 +1,24 @@
+// trigger file - filter news for the more recent 
+// third debate of the 2020 Democratic Debate (Primary Debates)
+// on September 12 within the +/- 3 hour window of the debate
+
+// title trigger named t1
+t1,TITLE,2020 Democratic Debate
+
+// description trigger named t2
+t2,DESCRIPTION,Texas Southern University
+
+// after trigger named t3
+t3,AFTER,12 Sep 2019 17:00:00
+
+// before trigger named t4
+t4,BEFORE,13 Sep 2019 01:00:00
+
+// composite trigger named t5
+t5,AND,t1,t2
+
+// composite trigger named t6
+t6,AND,t3,t4
+
+// the trigger list contains t5 and t6
+ADD,t5,t6
