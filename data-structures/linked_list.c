@@ -8,59 +8,59 @@ typedef struct le {
 
 typedef listenelement * list;
 
-void insert(int v, list *l){
+void insert(int v, list *li){
     listenelement * new;
     new = malloc(sizeof(listenelement));
     new->value = v;
-    new->next = *l;
-    *l = new;
+    new->next = *li;
+    *li = new;
 };
 
-int delete_head(list * l){
-    if (*l == NULL) return -1;
-    list old = *l;
-    *l = old->next;
+int delete_head(list * li){
+    if (*li == NULL) return -1;
+    list old = *li;
+    *li = old->next;
     free(old);
     return 0;
 };
 
-void delete_all(list *l) {
+void delete_all(list *li) {
     list next;
-    while (*l != NULL) {
-        next = (*l)->next;
-        free(*l);
-        *l = next;
+    while (*li != NULL) {
+        next = (*li)->next;
+        free(*li);
+        *li = next;
     }
 };
 
-int length(list l) {
+int length(list li) {
     int count = 0;
-    while (l != NULL) {
+    while (li != NULL) {
         count++;
-        l = l->next;
+        li = li->next;
     }
     return count;
 };
 
-void print_list(list l) {
-    if(l == NULL) printf("leer");
+void print_list(list li) {
+    if(li == NULL) printf("leer");
     else
-        while(l != NULL) {
-            printf("%d", l->value);
-            l = l->next;
+        while(li != NULL) {
+            printf("%d", li->value);
+            li = li->next;
         }
     printf("\n");
 };
 
 /* Löschen eines Elements aus der Liste anhand der Position */
 
-int delete_pos(list *l, int pos) {
+int delete_pos(list *li, int pos) {
     if (pos == 0) {
-        delete_head(l);
+        delete_head(li);
         return 0;
     }
     int count = 1;
-    listenelement * tmp = *l;
+    listenelement * tmp = *li;
     while (tmp != NULL) { 
         // Falls die Zählvariable count der Position pos entspricht, gib den Speicher frei 
         // und ordne die Liste, durch Umsetzen der Pointer um
@@ -79,15 +79,15 @@ int delete_pos(list *l, int pos) {
 
 /* Löschen eines Elements aus der Liste */
 
-int delete_elem(list * l, int e) {
-    if (*l == NULL) return -1;
+int delete_elem(list * li, int e) {
+    if (*li == NULL) return -1;
     
-    listenelement * tmp = *l;
+    listenelement * tmp = *li;
     int pos;
     for(pos = 0; tmp != NULL; tmp = tmp->next, pos++) {
         // Falls der Wert in der Liste dem Wert e entspricht, rufe delete_pos mit der Zählvariable pos auf
         if (tmp->value == e) {
-            delete_pos(l, pos);
+            delete_pos(li, pos);
             return 0;
         }
     }
@@ -99,40 +99,40 @@ int delete_elem(list * l, int e) {
 
 // Deklarationen der Hilfsfunktionen
 
-int get_val(list * l, int pos);
-void change_val(list * l, int pos, int val);
+int get_val(list * li, int pos);
+void change_val(list * li, int pos, int val);
 
 // Definition des Sortieralgorithmus
 
-void sort(list * l, int m) {
+void sort(list * li, int m) {
     if (m < 0) {
         // Falls m<0: Ersetze jeden Wert mit dem dazugehörigen Absolutwert und rufe sort mit m=0 auf
-        listenelement * tmp = *l;
+        listenelement * tmp = *li;
         for(; tmp != NULL; tmp = tmp->next) if (tmp->value < 0) tmp->value = abs(tmp->value);
-        sort(l, 0);
+        sort(li, 0);
     } else {
         // Falls m>=0: Wende InsertionSort als in-place Algorithmus an (S.18, 05-Suchen-und-Sortieren.pdf, AuD19)
         int i;
-        for(i = 0; i < length(*l); i++) {
-            int val = get_val(l, i);
+        for(i = 0; i < length(*li); i++) {
+            int val = get_val(li, i);
             int pos = i;
-            while ( (pos > 0) && (get_val(l, pos-1) > val) ) {
-                change_val(l, pos, get_val(l, pos-1));
+            while ( (pos > 0) && (get_val(li, pos-1) > val) ) {
+                change_val(li, pos, get_val(li, pos-1));
                 pos--;
             }
-            if (pos != i) change_val(l, pos, val);
+            if (pos != i) change_val(li, pos, val);
         }
     }
 }
 
 // Definitionen der Hilfsfunktionen
 
-int get_val(list * l, int pos){
-    /* Gibt den Wert an der Position pos der Liste l aus */
+int get_val(list * li, int pos){
+    /* Gibt den Wert an der Position pos der Liste li aus */
 
-    if (*l == NULL) return -1;
+    if (*li == NULL) return -1;
     
-    listenelement * tmp = *l;
+    listenelement * tmp = *li;
     int i;
     for(i = 0; tmp != NULL; tmp = tmp->next, i++) {
         if (i == pos) {
@@ -142,10 +142,10 @@ int get_val(list * l, int pos){
     return -1;
 }
 
-void change_val(list * l, int pos, int val){
-    /* Ersetzt den Wert an der Stelle pos in der Liste l mit dem Wert val */
+void change_val(list * li, int pos, int val){
+    /* Ersetzt den Wert an der Stelle pos in der Liste li mit dem Wert val */
 
-    listenelement * tmp = *l;
+    listenelement * tmp = *li;
     int i;
     for(i = 0; tmp != NULL; tmp = tmp->next, i++) {
         if (i == pos) {
@@ -160,63 +160,63 @@ int main(int argc, char *argv[]) {
 
     printf("\n#### TEST A ####\n");
 
-    list l;
+    list li;
     printf("Deklarierte Liste: ");
-    print_list(l); // Da die Liste uninitialisiert ist, wird hier beim Compilieren eine Warnung ausgeben
-    printf("Länge: %d\n", length(l));
+    print_list(li); // Da die Liste uninitialisiert ist, wird hier beim Compilieren eine Warnung ausgeben
+    printf("Länge: %d\n", length(li));
     printf("\nFüge Elemente zur Liste hinzu...");
-    insert(-1, &l);
-    insert(2, &l);
-    insert(3, &l);
-    insert(-4, &l);
-    insert(5, &l);
+    insert(-1, &li);
+    insert(2, &li);
+    insert(3, &li);
+    insert(-4, &li);
+    insert(5, &li);
     printf("\nInitialisierte Liste: ");
-    print_list(l);
-    printf("Länge: %d\n", length(l));
+    print_list(li);
+    printf("Länge: %d\n", length(li));
     printf("\nEntferne das erste Elemente...");
-    delete_head(&l);
+    delete_head(&li);
     printf("\nListe: ");
-    print_list(l);
+    print_list(li);
     printf("\nEntferne das Elemente an Position 2...");
-    delete_pos(&l, 2);
+    delete_pos(&li, 2);
     printf("\nListe: ");
-    print_list(l);
+    print_list(li);
     printf("\nEntferne das Elemente an Position 10...");
-    printf("\nRückgabewert: %i", delete_pos(&l, 10));
+    printf("\nRückgabewert: %i", delete_pos(&li, 10));
     printf("\nListe: ");
-    print_list(l);
+    print_list(li);
     printf("\nGib das Elemente an Position 0 zurück...");
-    printf("\nErstes Element: %i", get_val(&l, 0));
-    printf("\n\nEntferne das Element %i...", get_val(&l, 1));
-    delete_elem(&l, get_val(&l, 1));
+    printf("\nErstes Element: %i", get_val(&li, 0));
+    printf("\n\nEntferne das Element %i...", get_val(&li, 1));
+    delete_elem(&li, get_val(&li, 1));
     printf("\nListe: ");
-    print_list(l);
+    print_list(li);
     printf("\nEntferne das Elemente -97...");
-    printf("\nRückgabewert: %i", delete_elem(&l, -97));
+    printf("\nRückgabewert: %i", delete_elem(&li, -97));
     printf("\nListe: ");
-    print_list(l);
+    print_list(li);
     printf("\nEntferne alle Elemente...");
-    delete_all(&l);
+    delete_all(&li);
     printf("\nListe: ");
-    print_list(l);
+    print_list(li);
     printf("\n");
 
     printf("\n#### TEST B ####\n");
 
     printf("Füge neue Elemente zur Liste hinzu...");
-    insert(1, &l);
-    insert(-2, &l);
-    insert(-3, &l);
-    insert(4, &l);
-    insert(-5, &l);
+    insert(1, &li);
+    insert(-2, &li);
+    insert(-3, &li);
+    insert(4, &li);
+    insert(-5, &li);
     printf("\nListe: ");
-    print_list(l);
+    print_list(li);
     printf("\nSortiere Elemente mit m=0...\n");
-    sort(&l, 0);
-    print_list(l);
+    sort(&li, 0);
+    print_list(li);
     printf("\nSortiere Elemente mit m=-1...\n");
-    sort(&l, -1);
-    print_list(l);
+    sort(&li, -1);
+    print_list(li);
     printf("\n");
 
     return 0;

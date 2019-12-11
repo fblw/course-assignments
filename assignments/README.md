@@ -19,7 +19,7 @@ Finds the shortest path from a starting node to a target node.
 
 Download the file algorithms/dijkstra.py and execute:
 ```python
-$ python dijkstra.py
+% python dijkstra.py
 
 Dijkstra test case: start at 4, go to 2
 Total cost:
@@ -33,7 +33,7 @@ Finds the minimum spanning tree (MST) for a given undirected weighted graph $G =
 
 Download the file algorithms/kruskal.py and execute:
 ```python
-$ python kruskal.py
+% python kruskal.py
 
 Kruskal Test
 MST overall weight:
@@ -43,12 +43,12 @@ MST overall weight:
 It will calculate the sum of all edges of the MST for one test case. 
 The correspoding graph for the test case in matrix form is: 
 
-$$ \begin{matrix} 
+$$\begin{matrix} 
     -1 & 8 & 2 & 1\\
     8 & -1 & 6 & 5\\
     2 & 6 & -1 & 3\\
     1 & 5 & 3 & -1
-\end{matrix} $$
+\end{matrix}$$
 
 ### strassen.py
 
@@ -56,7 +56,7 @@ Divide and conquer algorithm for matrix multiplication.
 
 Download the file algorithms/strassen.py and execute:
 ```python
-$ python strassen.py
+% python strassen.py
 
 #### Matrizenmultiplikation nach Strassen ####
 
