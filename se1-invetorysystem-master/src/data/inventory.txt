@@ -1,0 +1,10 @@
+000012	Stift_blau_0.05mm	Schreibgeräte	360	0.1	0.6
+000013	Stift_schwarz_0.03mm	Schreibgeräte	130	0.1	0.6
+951167	Tippex 3x	Korrekturflüssigkeit	97	0.16	4.95
+461168	Tippex 10x	Korrekturflüssigkeit	48	0.55	15.5
+332471	Locher 25 Blatt rot	Büromaterial	37	0.24	6.25
+123483	Post-it Block weiß	Notizzettel	460	0.3	2.15
+513513	Hefter 100x bunt	Hefter	179	4.5	25.0
+986722	Textmarker 3x neongrün	Schreibgeräte	255	20.0	3.5
+002001	Kopierpapier 10x 500	Papier	513	25.0	35.95
+501993	Trennstreifen 5x 100 bunt	Register	83	24.00	25.0
